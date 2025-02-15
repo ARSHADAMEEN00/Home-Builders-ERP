@@ -12,6 +12,7 @@ import SiteRoute from './modules/site/site.router';
 import ExpenseRoute from './modules/expenses/expense.router';
 import PaymentRoute from './modules/payments/payments.router';
 import Employee_LaborRoute from './modules/employe&labormanagement/employe.router';
+import TrackingRoute from './modules/tracking/tracking.router';
 
 validateEnv();
 
@@ -29,6 +30,7 @@ const app = new App([
   new ExpenseRoute(),
   new PaymentRoute(),
   new Employee_LaborRoute(),
+  new TrackingRoute(),
 
 
 ]);
