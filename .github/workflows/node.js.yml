@@ -1,0 +1,51 @@
+name: Node CI/CD Workflow
+
+on:
+  push:
+    branches: [production]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.17.0'
+
+      - name: Remove node modules
+        run: rm -rf node_modules
+
+      - name: Install Dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Clean Cache
+        run: npm cache clean --force
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.SERVER_IP }}
+          REMOTE_USER: ${{ secrets.SERVER_USER }}
+          TARGET: '/var/www/backend/'
+          EXCLUDE: '/node_modules/,/src/,/.github/,/.git/'
+
+
+      - name: Restart Application
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 22
+          PATH: /home/ubuntu/.nvm/versions/node/v18.17.0/bin/node:/home/ubuntu/.nvm/versions/node/v18.17.0/bin/pm2
+          script: |
+            export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v18.17.0/bin
+            cd /var/www/backend/
+            npm run ci/cd:prod
