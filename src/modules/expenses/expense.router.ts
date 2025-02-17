@@ -14,8 +14,11 @@ constructor() {
   }
 
   private initializeRoutes() {
-    //create
     this.router.post(`${this.path}/create`,validationMiddleware(CreateExpenseDto,'body', false),adminMiddleware,this.expenseController.createExpense);
+    this.router.get(`${this.path}/all`,adminMiddleware,this.expenseController.getAllExpense);
+    this.router.put(`${this.path}/:id`,validationMiddleware(CreateExpenseDto,'body', false),adminMiddleware,this.expenseController.updateExpenseById);
+    this.router.get(`${this.path}/:id`,adminMiddleware,this.expenseController.findExpenseById);
+    this.router.delete(`${this.path}/:id`,adminMiddleware,this.expenseController.deleteExpenseById);
   }
 
 }

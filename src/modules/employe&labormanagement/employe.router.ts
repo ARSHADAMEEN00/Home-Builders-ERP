@@ -16,6 +16,10 @@ class Employee_LaborRoute implements Routes{
       private initializeRoutes() {
         //create
         this.router.post(`${this.path}/create`,validationMiddleware(Create_employe_laborDto,'body', false),adminMiddleware,this.employe_Labor_Controller.create_employe_Labor);
+        this.router.get(`${this.path}/all`,adminMiddleware,this.employe_Labor_Controller.getAllEmployeLabor);
+        this.router.put(`${this.path}/:id`,validationMiddleware(Create_employe_laborDto,'body', false),adminMiddleware,this.employe_Labor_Controller.updateEmployeLabour);
+        this.router.get(`${this.path}/:id`,adminMiddleware,this.employe_Labor_Controller.findEmployeLabourById);
+        this.router.delete(`${this.path}/:id`,adminMiddleware,this.employe_Labor_Controller.deleteEmployeLabourById);
       }
 }
 

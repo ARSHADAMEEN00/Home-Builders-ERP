@@ -19,7 +19,7 @@ export class CreateSite {
   public clientContact: number;
 
   @IsEnum(STATUS)
-  @IsNotEmpty()
-  // @IsOptional()
+  // @IsNotEmpty()
+  @IsOptional()
   public status?: STATUS;
 }

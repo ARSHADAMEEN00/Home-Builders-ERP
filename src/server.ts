@@ -28,9 +28,9 @@ const app = new App([
   new UserRoute(),
   new SiteRoute(),
   new ExpenseRoute(),
-  new PaymentRoute(),
+  new PaymentRoute(), 
   new Employee_LaborRoute(),
-  new TrackingRoute(),
+  new TrackingRoute(),//
 
 
 ]);
