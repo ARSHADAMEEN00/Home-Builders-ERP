@@ -16,6 +16,10 @@ class TrackingRoute implements Routes {
   private initializeRoutes() {
     //create
     this.router.post(`${this.path}/create`,validationMiddleware(CreateTrackingDto,'body', false),adminMiddleware,this.trackingController.createTracking);
+    this.router.get(`${this.path}/all`,adminMiddleware,this.trackingController.allTrakingList);
+    this.router.put(`${this.path}/:id`,validationMiddleware(CreateTrackingDto,'body', false),adminMiddleware,this.trackingController.updateTrackingById);
+    this.router.get(`${this.path}/:id`,adminMiddleware,this.trackingController.findTrackingById);
+    this.router.delete(`${this.path}/:id`,adminMiddleware,this.trackingController.deleteTrackingById);
   }
 }
 

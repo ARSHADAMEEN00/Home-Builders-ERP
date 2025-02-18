@@ -30,7 +30,7 @@ const app = new App([
   new ExpenseRoute(),
   new PaymentRoute(), 
   new Employee_LaborRoute(),
-  new TrackingRoute(),//
+  new TrackingRoute(),
 
 
 ]);
