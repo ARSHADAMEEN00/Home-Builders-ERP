@@ -2,6 +2,8 @@ import { HttpException } from '@/exceptions/HttpException';
 import { CreateSite } from './site.dto';
 import { Site } from './site.interface';
 import siteModel from './site.model';
+import { toNumber } from 'lodash';
+import moment from 'moment';
 
 class siteService {
   public siteModel = siteModel;
@@ -12,10 +14,32 @@ class siteService {
     return createSite;
   }
   
-  public async getAllSite():Promise<Site[]>{
-    const getSiteList :Site[] = await this.siteModel.find();
+  public async getAllSite(page:string,limit:string,query:any):Promise<{getSiteList:Site[],total:number,page:string}>{
+
+    let queryData = {}
+    if(query.status){
+      queryData['status'] = query.status;
+    }
+    if(query.search){
+      queryData['$or'] = [
+        { name: { $regex: query?.search ? query?.search : '', $options: 'i' } },
+        { clientName: { $regex: query?.search ? query?.search : '', $options: 'i' } } ,
+        { location: { $regex: query?.search ? query?.search : '', $options: 'i' } } ,
+        { clientContact: { $regex: query?.search ? query?.search : '', $options: 'i' } } ,
+      ];
+    }
+    if(query.from && query.to){
+      const from = moment(query.from,'YYYY/MM/DD').startOf('day')
+      const to = moment(query.to,'YYYY/MM/DD').endOf('day')
+      queryData['createdAt'] = {$gte:from,$lte:to};
+    }
+
+    const getSiteList :Site[] = await this.siteModel.find(queryData).sort({createdAt:-1})
+    .limit(toNumber(limit))
+    .skip((toNumber(page) - 1) * toNumber(limit));
     if(getSiteList.length == 0) throw new HttpException(404 ,"no data");
-    return getSiteList;
+    const total = await this.siteModel.countDocuments(queryData);
+    return {getSiteList,total,page};
   }
 
   public async UpdateSite(siteId:string,siteData:CreateSite):Promise<Site>{

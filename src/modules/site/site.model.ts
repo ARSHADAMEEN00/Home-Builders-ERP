@@ -17,7 +17,7 @@ const siteSchema: Schema = new Schema(
       type: String,
     },
     clientContact: {
-      type: Number,
+      type: String,
     },
     status: {
       type: String,

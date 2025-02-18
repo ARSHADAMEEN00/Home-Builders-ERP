@@ -15,8 +15,8 @@ export class CreateSite {
   public clientName: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  public clientContact: number;
+  @IsString()
+  public clientContact: string;
 
   @IsEnum(STATUS)
   // @IsNotEmpty()

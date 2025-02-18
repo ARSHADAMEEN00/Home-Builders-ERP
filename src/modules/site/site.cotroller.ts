@@ -16,7 +16,10 @@ class siteController {
 
   public getSiteList = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const siteList = await this.siteService.getAllSite();
+      const query = req.query;
+      const page: string = (query.page || '1') as string;
+      const limit: string = (query.limit || '10') as string;
+      const siteList = await this.siteService.getAllSite(page,limit,query);
       res.status(200).json(siteList);
     } catch (err) {
       next(err);
