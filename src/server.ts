@@ -13,6 +13,7 @@ import ExpenseRoute from './modules/expenses/expense.router';
 import PaymentRoute from './modules/payments/payments.router';
 import Employee_LaborRoute from './modules/employe&labormanagement/employe.router';
 import TrackingRoute from './modules/tracking/tracking.router';
+import DashboardRoute from './modules/dashboard/dashboard.router';
 
 validateEnv();
 
@@ -26,6 +27,9 @@ const app = new App([
   // -----------------start --------------------------//
   new AuthRoute(),
   new UserRoute(),
+
+  // dashboard
+  new DashboardRoute(),
   new SiteRoute(),
   new ExpenseRoute(),
   new PaymentRoute(), 

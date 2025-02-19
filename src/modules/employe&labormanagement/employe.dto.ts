@@ -11,8 +11,8 @@ export class Create_employe_laborDto {
   public role?: ROLE;
 
   @IsNotEmpty()
-  @IsNumber()
-  public contact: number;
+  @IsString()
+  public contact: string;
 
   @IsNotEmpty()
   @IsString()

@@ -15,7 +15,7 @@ const Employee_Labor_Management_Schema: Schema = new Schema(
         },
     },
     contact: {
-      type: Number,
+      type: String,
       
     },
     assignedSite: {

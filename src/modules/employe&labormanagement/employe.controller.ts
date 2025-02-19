@@ -16,7 +16,10 @@ class employe_Labor_Controller {
 
   public getAllEmployeLabor = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const getAllEmployeLabor = await this.employe_Labor_Service.getAllEmployeLabor();
+      const query = req.query;
+      const page: string = (query.page || '1') as string;
+      const limit: string = (query.limit || '10') as string;
+      const getAllEmployeLabor = await this.employe_Labor_Service.getAllEmployeLabor(page,limit,query);
       res.status(200).json(getAllEmployeLabor);
     } catch (err) {
       next(err);
