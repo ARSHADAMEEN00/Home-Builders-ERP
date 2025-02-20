@@ -11,6 +11,16 @@ class dashboardController {
       next(err);
     }
   };
+  
+  public totalCounts = async (req: Request, res: Response, next: NextFunction) => {
+    try{
+      const totalCounts = await this.dashboardService.totalCounts();
+      res.status(200).json(totalCounts);
+
+    }catch(err){
+      next(err)
+    }
+  }
 }
 
 export default dashboardController;

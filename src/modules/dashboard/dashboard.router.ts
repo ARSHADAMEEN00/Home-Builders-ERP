@@ -13,6 +13,8 @@ class DashboardRoute implements Routes {
   }
   private initializeRoutes() {
     this.router.get(`${this.path}/latestsiteProgress`, adminMiddleware, this.dashboardController.latestSiteProgress);
+   
+    this.router.get(`${this.path}/counts`, adminMiddleware, this.dashboardController.totalCounts);
   }
 }
 

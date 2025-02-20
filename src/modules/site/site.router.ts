@@ -24,6 +24,10 @@ class SiteRoute implements Routes {
     this.router.get(`${this.path}/:id`,adminMiddleware,this.siteController.findSiteById);
     //delete
     this.router.delete(`${this.path}/:id`,adminMiddleware,this.siteController.deleteSiteById);
+
+    // site details 
+    this.router.post(`${this.path}/details/:id`,adminMiddleware,this.siteController.siteDetailsById);
+
   }
 }
 

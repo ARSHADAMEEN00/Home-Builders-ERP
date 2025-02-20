@@ -58,6 +58,17 @@ class siteController {
     }
   }
 
+  public siteDetailsById = async(req: Request, res: Response, next: NextFunction) => {
+    try{
+      const siteId: string = req.params.id;
+      const siteDetailsById = await this.siteService.siteDetailsById(siteId);
+      res.status(200).json(siteDetailsById);
+      
+    }catch(err){
+      next(err)
+    }
+  }
+
 }
 
 export default siteController;

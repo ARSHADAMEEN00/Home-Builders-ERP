@@ -4,9 +4,15 @@ import { Site } from './site.interface';
 import siteModel from './site.model';
 import { toNumber } from 'lodash';
 import moment from 'moment';
+import expenseModel from '../expenses/expense.model';
+import trackingModel from '../tracking/tracking.model';
+import paymentModel from '../payments/payments.model';
 
 class siteService {
   public siteModel = siteModel;
+  public expenseModal = expenseModel;
+  public trackingModel = trackingModel;
+  public paymentModel = paymentModel;
 
   public async createSite(body: CreateSite): Promise<Site> {
     const createSite: Site = await this.siteModel.create(body);
@@ -61,6 +67,18 @@ class siteService {
     return deleteSiteById;
   }
 
+  //siteDetails
+  public async siteDetailsById(siteId:string):Promise<any>{
+    
+    const siteById = await this.siteModel.findById(siteId);
+    if (!siteById) throw new HttpException(404, "site not found");
+    const ExpenseById = await this.expenseModal.find({siteId});
+    const trackingById = await this.trackingModel.find({siteId});
+    const paymentById = await this.paymentModel.find({siteId});
+    const totalExpense = ExpenseById.reduce((sum,expense)=>sum+expense.amount,0);
+    const paymentGiven = paymentById.reduce((sum,payment)=>sum+payment.amount,0);
+    return {site:siteById,expenses:ExpenseById,tracking:trackingById,payment:paymentById,totalExpense,paymentGiven};
+  }
 
 }
 
