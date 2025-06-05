@@ -19,10 +19,11 @@ module.exports = {
       merge_logs: true, // if true, stdout and stderr will be merged and sent to pm2 log
       output: './logs/access.log', // pm2 log file
       error: './logs/error.log', // pm2 error log file
-      env: {
-        // environment variable
+       env: {
         PORT: 4000,
         NODE_ENV: 'production',
+        MONGO_DB_URL: 'mongodb+srv://ameenarshadsh:ZibJrgsWA09NwqZG@siteappcluster.eu5lr.mongodb.net/',
+        JWT_SECRET: 'ADSASSFHFHSFDGDSGWWEF445EBFHEWBFHDFDVDWERDFWGJFJNNODVFBE',
       },
     },
     {
