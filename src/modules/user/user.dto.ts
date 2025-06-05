@@ -6,6 +6,10 @@ export class SignupUser {
   @IsString()
   public name: string;
 
+  @IsNotEmpty()
+  @IsString()
+  public username: string;
+
   // @IsNotEmpty()
   // @IsString()
   // public username: string;
