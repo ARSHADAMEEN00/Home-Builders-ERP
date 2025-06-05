@@ -21,6 +21,7 @@ export class Env {
         // console.log(process.env.MONGO_DB_URL);
         return process.env.MONGO_DB_URL;
       case STAGE.PRODUCTION:
+        // console.log(process.env.MONGO_DB_URL)
         return process.env.MONGO_DB_URL;
         // return `mongodb://${process.env.MONGO_HOST_PROD}:${process.env.MONGO_PORT_PROD}/${process.env.MONGO_DB_PROD}`;
     }
