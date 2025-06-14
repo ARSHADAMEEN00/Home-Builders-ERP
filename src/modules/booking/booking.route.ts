@@ -1,12 +1,13 @@
-import { Router } from 'express';
+
 import { Routes } from '../index/index.interface';
 import bookingController from './booking.controller';
 import validationMiddleware from '@/middlewares/validation.middleware';
-import { ConfirmBookingDto, CreateBookingDto } from './booking.dto';
+import { CreateBookingDto } from './booking.dto';
+import { Router, Router as ExpressRouter } from 'express'; 
 
 class BookingRoute implements Routes {
   public path = '/booking';
-  public router = Router();
+ public router: ExpressRouter = Router();
   public bookingController = new bookingController();
   constructor() {
     this.initializeRoutes();

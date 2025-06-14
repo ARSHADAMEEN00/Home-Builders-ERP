@@ -1,14 +1,14 @@
 import { Routes } from "@/interfaces/routes.interface";
-import { Router } from "express";
 import employe_Labor_Controller from "./employe.controller";
 import { adminMiddleware } from "@/middlewares/auth.middleware";
 import validationMiddleware from "@/middlewares/validation.middleware";
 import { Create_employe_laborDto } from "./employe.dto";
+import { Router, Router as ExpressRouter } from 'express'; 
 
 class Employee_LaborRoute implements Routes{
     public path = '/employe_labor';
     public employe_Labor_Controller = new employe_Labor_Controller();
-    public router = Router();
+   public router: ExpressRouter = Router();
 
     constructor() {
         this.initializeRoutes();

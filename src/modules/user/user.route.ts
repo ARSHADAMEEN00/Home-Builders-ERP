@@ -1,14 +1,14 @@
-import { Router } from 'express';
 import { Routes } from '@interfaces/routes.interface';
 import userController from './user/user-user.controller';
 import validationMiddleware from '@/middlewares/validation.middleware';
 import { SignupUser, UpdateUser, userId } from './user.dto';
 import UserAdminController from './admin/admin-user.controller';
 import { adminMiddleware, userAuthMiddleware } from '@/middlewares/auth.middleware';
+import { Router, Router as ExpressRouter } from 'express'; 
 
 class UserRoute implements Routes {
   public path = '/user';
-  public router = Router();
+ public router: ExpressRouter = Router();
   public userController = new userController();
   public userAdminController = new UserAdminController();
 

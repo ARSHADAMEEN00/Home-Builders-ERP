@@ -1,9 +1,11 @@
-import { Router } from 'express';
+
 import { Routes } from './index.interface';
 import IndexController from './index.controller';
+import { Router, Router as ExpressRouter } from 'express'; 
+
 
 class IndexRoute implements Routes {
-  public router = Router();
+ public router: ExpressRouter = Router();
   public path = '/';
   public IndexController = new IndexController();
   constructor() {

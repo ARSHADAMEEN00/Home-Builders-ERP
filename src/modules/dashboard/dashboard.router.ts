@@ -1,12 +1,12 @@
 import { Routes } from '@/interfaces/routes.interface';
-import { Router } from 'express';
 import { adminMiddleware } from '@/middlewares/auth.middleware';
 import dashboardController from './dashboard.controller';
+import { Router, Router as ExpressRouter } from 'express'; 
 
 class DashboardRoute implements Routes {
   public path = '/dashboard';
   public dashboardController = new dashboardController();
-  public router = Router();
+ public router: ExpressRouter = Router();
 
   constructor() {
     this.initializeRoutes();

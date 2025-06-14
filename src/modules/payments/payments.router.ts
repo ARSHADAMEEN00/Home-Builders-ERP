@@ -1,14 +1,14 @@
 import { Routes } from "@/interfaces/routes.interface";
-import { Router } from "express";
 import paymentController from "./payments.controller";
 import { adminMiddleware } from "@/middlewares/auth.middleware";
 import validationMiddleware from "@/middlewares/validation.middleware";
 import { CreatePaymentDto } from "./payments.dto";
+import { Router, Router as ExpressRouter } from 'express'; 
 
 class PaymentRoute implements Routes{
     public path = '/payment';
     public paymentController = new paymentController();
-    public router = Router();
+   public router: ExpressRouter = Router();
     constructor() {
         this.initializeRoutes();
       }

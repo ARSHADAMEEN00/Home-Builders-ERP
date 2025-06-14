@@ -1,12 +1,13 @@
-import { Router } from 'express';
+
 import { Routes } from '../index/index.interface';
 import validationMiddleware from '@/middlewares/validation.middleware';
 import { DeleteImageDto, UploadImageDto } from './image.dto';
 import ImageController from './image.controller';
+import { Router, Router as ExpressRouter } from 'express'; 
 
 class ImageRoute implements Routes {
   public path = '/image';
-  public router = Router();
+ public router: ExpressRouter = Router();
   public ImageController = new ImageController();
   constructor() {
     this.intializeRoutes();

@@ -1,14 +1,14 @@
 import { Routes } from '@/interfaces/routes.interface';
-import { Router } from 'express';
 import trackingController from './tracking.controller';
 import { adminMiddleware } from '@/middlewares/auth.middleware';
 import validationMiddleware from '@/middlewares/validation.middleware';
 import { CreateTrackingDto } from './tracking.dto';
+import { Router, Router as ExpressRouter } from 'express'; 
 
 class TrackingRoute implements Routes {
   public path = '/tracking';
   public trackingController = new trackingController();
-  public router = Router();
+ public router: ExpressRouter = Router();
 
   constructor() {
     this.initializeRoutes();

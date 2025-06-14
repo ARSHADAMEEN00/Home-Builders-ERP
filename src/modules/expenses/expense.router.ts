@@ -1,14 +1,14 @@
 import { Routes } from "@/interfaces/routes.interface";
-import { Router } from "express";
 import expenseController from "./expense.controller";
 import { adminMiddleware } from "@/middlewares/auth.middleware";
 import validationMiddleware from "@/middlewares/validation.middleware";
 import { CreateExpenseDto } from "./expense.dto";
+import { Router, Router as ExpressRouter } from 'express'; 
 
 class ExpenseRoute implements Routes{
 public path = '/expense';
 public expenseController = new expenseController();
-public router = Router();
+ public router: ExpressRouter = Router();
 constructor() {
     this.initializeRoutes();
   }

@@ -1,14 +1,15 @@
 import { Routes } from '@/interfaces/routes.interface';
 import { adminMiddleware } from '@/middlewares/auth.middleware';
-import { Router } from 'express';
 import siteController from './site.cotroller';
 import validationMiddleware from '@/middlewares/validation.middleware';
 import { CreateSite } from './site.dto';
+import { Router, Router as ExpressRouter } from 'express'; 
+
 
 class SiteRoute implements Routes {
   public path = '/site';
   public siteController = new siteController();
-  public router = Router();
+ public router: ExpressRouter = Router();
 
   constructor() {
     this.initializeRoutes();
