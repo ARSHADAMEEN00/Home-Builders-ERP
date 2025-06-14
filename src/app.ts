@@ -58,7 +58,7 @@ class App {
 
   private async connectToDatabase() {
     if (Env.STAGE !== STAGE.PRODUCTION) {
-      set('debug', true);
+      this.app.use(errorHandler()); 
     }
     // dbConnection.options
     await connect(dbConnection.url).catch(err => {
