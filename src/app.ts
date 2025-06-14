@@ -133,4 +133,10 @@ class App {
 
 }
 
+  // Handle uncaught exceptions (sync code errors)
+  process.on('uncaughtException', (err) => {
+    console.error('🧨 Uncaught Exception:', err);
+    process.exit(1); // Optional: Exit and restart using PM2 or Docker
+  });
+
 export default App;

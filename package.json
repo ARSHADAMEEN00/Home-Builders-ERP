@@ -55,7 +55,7 @@
     "node-schedule": "^2.1.1",
     "pm2": "^5.1.2",
     "razorpay": "^2.8.3",
-    "sharp": "^0.33.3",
+    "sharp": "^0.33.5",
     "shortid": "^2.2.16",
     "swagger-jsdoc": "^6.0.0",
     "swagger-ui-express": "^4.1.6",
