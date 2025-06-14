@@ -5,16 +5,14 @@
       dockerfile: Dockerfile
     container_name: server
     ports:
-      - '3000:3000'
+      - '4001:4001'
     env_file:
       - .env
     volumes:
       - ./:/app
       - /app/node_modules
-    restart: 'unless-stopped'
+    restart: unless-stopped
     networks:
       - backend
-    links:
-      - mongo
     depends_on:
       - mongo
